@@ -1,0 +1,459 @@
+:root {
+    --primary: #FF2D75;
+    --secondary: #00F0FF;
+    --dark: #0E0B16;
+    --light: #E7DFDD;
+    --accent: #FFD700;
+    --ultrakill: #8E24AA;
+    --invencible: #00B4D8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--dark);
+    color: var(--light);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stars,
+.twinkling {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center;
+    z-index: -2;
+}
+
+.twinkling {
+    background: transparent url('https://i.imgur.com/XYMF4CA.png') repeat top center;
+    z-index: -1;
+    animation: twinkle 200s linear infinite;
+}
+
+@keyframes twinkle {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -10000px 5000px;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Cabeçalho animado */
+.header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.logo-container {
+    text-align: center;
+    animation: float 6s ease-in-out infinite;
+    margin-bottom: 2rem;
+}
+
+.pixel-logo {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem;
+    color: var(--primary);
+    text-shadow: 4px 4px 0 var(--secondary),
+        8px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.sub-logo {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px var(--accent);
+    }
+
+    to {
+        text-shadow: 0 0 15px var(--accent), 0 0 20px var(--secondary);
+    }
+}
+
+/* Conteúdo centralizado */
+.centered-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.name-container {
+    margin-bottom: 2rem;
+}
+
+.name-effect {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 4rem;
+    background: linear-gradient(90deg, #FF2D75, #00F0FF, #FFD700);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 1rem 0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    animation: nameGlow 2s infinite alternate;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--light);
+    opacity: 0.9;
+    margin-top: 1rem;
+}
+
+/* Botão principal */
+.cta-button {
+    position: relative;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    border: none;
+    padding: 1.5rem 3rem;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 2rem 0;
+    display: block;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.button-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.cta-button:hover .button-shine {
+    left: 100%;
+}
+
+/* Poema principal */
+.main-poem {
+    background: rgba(14, 11, 22, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    text-align: center;
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    position: relative;
+    display: none;
+    /* Alterado de hidden para none */
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.5s ease;
+    z-index: 100;
+}
+
+.main-poem.show {
+    display: block;
+    /* Garante que o elemento será exibido */
+    opacity: 1;
+    transform: scale(1);
+}
+
+.main-poem h3 {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.poem-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.poem-text p {
+    margin-bottom: 1rem;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.close-btn:hover {
+    transform: rotate(90deg);
+    color: var(--primary);
+}
+
+/* Grid interativo */
+.interactive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+    width: 100%;
+}
+
+.grid-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    z-index: 0;
+}
+
+.grid-item:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+#item1:hover {
+    background: rgba(142, 36, 170, 0.3);
+}
+
+#item2:hover {
+    background: rgba(0, 180, 216, 0.3);
+}
+
+#item3:hover {
+    background: rgba(255, 45, 117, 0.3);
+}
+
+#item4:hover {
+    background: rgba(255, 215, 0, 0.3);
+}
+
+.item-content h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--light);
+}
+
+.item-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Caixas de resposta */
+.response-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 20, 40, 0.95);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 2px solid var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.response-box.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.response-content {
+    position: relative;
+    padding: 1.5rem;
+    text-align: center;
+    max-width: 90%;
+}
+
+.response-box h3 {
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+}
+
+.poem {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.pixel-art,
+.emoji-effect {
+    font-size: 3rem;
+    margin: 1rem 0;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+}
+
+/* Animações */
+@keyframes nameGlow {
+    from {
+        text-shadow: 0 0 10px rgba(255, 45, 117, 0.7);
+    }
+
+    to {
+        text-shadow: 0 0 20px rgba(0, 240, 255, 0.9), 0 0 30px rgba(255, 215, 0, 0.6);
+    }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.confetti-particle {
+    position: fixed;
+    top: -10px;
+    z-index: 999;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .pixel-logo {
+        font-size: 2rem;
+    }
+
+    .name-effect {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .interactive-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-poem {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+    }
+}
